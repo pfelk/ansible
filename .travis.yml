@@ -29,6 +29,6 @@ script:
   - ansible-playbook -i hosts deploy-stack.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i hosts -vvvv --ask-pass --ask-become deploy-stack.yml
+  - ansible-playbook -i hosts -vvvv --check deploy-stack.yml
 
 
