@@ -7,16 +7,18 @@ python: "2.7"
 # Doc: https://docs.travis-ci.com/user/customizing-the-build#Build-Matrix
 env:
   - ANSIBLE_VERSION=latest
-#  - ANSIBLE_VERSION=2.9.0
-#  - ANSIBLE_VERSION=2.8.0
-#  - ANSIBLE_VERSION=2.7.0
+#  - ANSIBLE_VERSION=2.9.4
+#  - ANSIBLE_VERSION=2.9.3
+#  - ANSIBLE_VERSION=2.9.2
+#  - ANSIBLE_VERSION=2.9.1
+
 
 branches:
   only:
     - master
 
 before_install:
-  - sudo apt-get update -qq
+  - sudo apt update -qq
 
 install:
   - sudo apt-get install sshpass
@@ -27,7 +29,6 @@ install:
 script:
   # Check the role/playbook's syntax.
   - ansible-playbook -i hosts deploy-stack.yml --syntax-check
-
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook --connection=local -vvvv --check deploy-stack.yml
 
