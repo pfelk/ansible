@@ -25,7 +25,7 @@ install:
 
 script:
   # Check the role/playbook's syntax.
-  - ansible-playbook -i deploy-stack.yml --syntax-check
+  - ansible-playbook -i hosts deploy-stack.yml --syntax-check
   - ansible-playbook -i hosts roles/elasticsearch/tasks/main.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
