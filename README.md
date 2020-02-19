@@ -1,4 +1,4 @@
-# ansible-pfelk
+# ansible-pfelk [![Build Status](https://travis-ci.org/3ilson/ansible-pfelk.svg?branch=master)](https://travis-ci.org/3ilson/ansible-pfelk)
 Ansible playbook automation for deploying pfelk
 
 ## Prerequisites 
