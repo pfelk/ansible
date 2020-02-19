@@ -1,4 +1,4 @@
-# ansible-pfelk
+# ansible-pfelk [![Build Status](https://travis-ci.org/3ilson/ansible-pfelk.svg?branch=master)](https://travis-ci.org/3ilson/ansible-pfelk)
 Ansible playbook automation for deploying pfelk
 
 ## Prerequisites 
@@ -128,7 +128,7 @@ You can follow the steps starting with the Firewall section at https://github.co
 
 ## Troubleshooting
 
-### Testing the playbook with dry-mode
+### Testing the playbook with dry-run
  - include `--check` flag
  - run `ansible-playbook -i hosts --check deploy-stack.yml`
 
