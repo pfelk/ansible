@@ -19,6 +19,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
+  - sudo apt-get install sshpass
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible-lint; fi
@@ -26,9 +27,8 @@ install:
 script:
   # Check the role/playbook's syntax.
   - ansible-playbook -i hosts deploy-stack.yml --syntax-check
-  - ansible-playbook -i hosts roles/elasticsearch/tasks/main.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i hosts -vvvv --ask-become deploy-stack.yml
+  - ansible-playbook -i hosts -vvvv --ask-pass --ask-become deploy-stack.yml
 
 
