@@ -141,4 +141,4 @@ To deploy the playbook to your local machine you need the do following:
  
 ### Enable verbose mode to debug problems
  - include `-vvvv` flag
- - run `ansible-playbook -i hosts --ask-pass --ask-become -vvvv install/install.yml`
+ - run `ansible-playbook -i hosts --ask-pass --ask-become -vvvv deploy-stack.yml`
