@@ -29,6 +29,6 @@ script:
   - ansible-playbook -i hosts roles/elasticsearch/tasks/main.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i hosts deploy-stack.yml -vvvv --ask-become deploy-stack.yml
+  - ansible-playbook -i hosts -vvvv --ask-become deploy-stack.yml
 
 
