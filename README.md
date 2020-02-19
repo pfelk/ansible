@@ -128,7 +128,7 @@ You can follow the steps starting with the Firewall section at https://github.co
 
 ## Troubleshooting
 
-### Testing the playbook with dry-mode
+### Testing the playbook with dry-run
  - include `--check` flag
  - run `ansible-playbook -i hosts --check deploy-stack.yml`
 
