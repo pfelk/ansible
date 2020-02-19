@@ -1,9 +1,5 @@
 # ansible-pfelk
-Ansible playbook automation for pfelk
-
-## Table of Contents
-- [Installation](#installation)
-- [Configuration](#configuration)
+Ansible playbook automation for deploying pfelk
 
 ## Prerequisites 
 
@@ -97,7 +93,7 @@ $ git clone https://github.com/3ilson/ansible-pfelk.git
 ### Define the host you want to deploy the ELK stack to
 Provide your target IP address in `ansible-pfelk/hosts` under `elk`, the ELK stak will be installed to this target.
 
-### Change current folder to ansible-pfelk/ then deploy the playbook
+### Change current folder to ansible-pfelk/ then deploy the stack
 ```
 $ cd ansible-pfelk/
 $ ansible-playbook -i hosts --ask-become deploy-stack.yml
