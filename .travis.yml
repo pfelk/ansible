@@ -7,9 +7,9 @@ python: "2.7"
 # Doc: https://docs.travis-ci.com/user/customizing-the-build#Build-Matrix
 env:
   - ANSIBLE_VERSION=latest
-  - ANSIBLE_VERSION=2.9.0
-  - ANSIBLE_VERSION=2.8.0
-  - ANSIBLE_VERSION=2.7.0
+#  - ANSIBLE_VERSION=2.9.0
+#  - ANSIBLE_VERSION=2.8.0
+#  - ANSIBLE_VERSION=2.7.0
 
 branches:
   only:
@@ -26,9 +26,9 @@ install:
 script:
   # Check the role/playbook's syntax.
   - ansible-playbook -i deploy-stack.yml --syntax-check
-  - ansible-playbook -i roles/elasticsearch/tasks/main.yml --syntax-check
+  - ansible-playbook -i hosts roles/elasticsearch/tasks/main.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i deploy-stack.yml -vvvv --ask-become deploy-stack.yml
+  - ansible-playbook -i hosts deploy-stack.yml -vvvv --ask-become deploy-stack.yml
 
 
