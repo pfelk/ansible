@@ -141,7 +141,7 @@ To deploy the playbook to your local machine you need the do following:
  - install and setup `openssh`on your machine
  - if you choose not to use ssh keys, install `sshpass` for auth purposes
  - under `hosts` define your IP as `localhost`
- - run the playbook with: `ansible-playbook -i hosts --ask-pass --ask-become install/install.yml`
+ - run the playbook with: `ansible-playbook -i hosts --ask-pass --ask-become deploy-stack.yml`
  
 ### Enable verbose mode to debug problems
  - include `-vvvv` flag
