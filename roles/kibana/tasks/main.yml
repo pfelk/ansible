@@ -1,13 +1,24 @@
 --- 
 
-- name: Install apt-transport-https to support https APT downloads
-  apt: name=apt-transport-https state=present
+- name: Install Elasticsearch repository
+  become: yes
+  block:
+  - name: Debian - Install apt-transport-https to support https APT downloads
+    apt:
+      name: apt-transport-https
+      state: present
 
-- name: Add Elasticsearch repository key
-  apt_key: url="{{ es_apt_key }}" state=present
+  - name: Debian - Add Elasticsearch repository key
+    apt_key:
+      url: '{{ es_apt_key }}'
+      state: present
 
-- name: Add elasticsearch repository
-  apt_repository: repo={{ es_apt_url }} state=present 
+  - name: Debian - Add elasticsearch repository
+    apt_repository:
+      repo: '{{ item.repo }}'
+      state: '{{ item.state }}'
+    with_items:
+      - { repo: "{{ es_apt_url }}", state: "present" }
 
 - name: Install kibana
   apt: name=kibana state=present
