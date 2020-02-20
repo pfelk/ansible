@@ -21,7 +21,8 @@
       - { repo: "{{ es_apt_url }}", state: "present" }
 
 - name: Install kibana
-  apt: name=kibana state=present
+  apt: name=kibana
+  state=present
 
 - name: Copy kibana configuration
   copy:
