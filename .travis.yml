@@ -2,7 +2,7 @@
 sudo: required
 
 language: python
-python: "2.7"
+python: "3.8.1"
 
 # Doc: https://docs.travis-ci.com/user/customizing-the-build#Build-Matrix
 env:
