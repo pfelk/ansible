@@ -10,8 +10,7 @@
 
   - name: Debian - Add Elasticsearch repository key
     apt_key:
-      url: '{{ es_apt_key }}'
-      id: '{{ es_apt_key_id }}'
+      key: '{{ es_apt_key }}'
       state: present
 
   - name: Debian - Add elasticsearch repository
