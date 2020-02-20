@@ -43,7 +43,6 @@ ansible-pfelk/
 ├── group_vars
 │   └── all.yml
 ├── hosts
-├── LICENSE
 └── roles
     ├── elasticsearch
     │   ├── files
