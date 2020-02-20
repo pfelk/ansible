@@ -31,6 +31,6 @@ script:
   # Check the role/playbook's syntax.
   - ansible-playbook -i hosts deploy-stack.yml --syntax-check
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i hosts --check deploy-stack.yml -vvvv
+  - ansible-playbook -i hosts --connection=local --check deploy-stack.yml -vvvv
 
 
