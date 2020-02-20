@@ -1,7 +1,6 @@
 --- 
 
 - name: Install Elasticsearch repository
-  when: es_use_repository
   become: yes
   block:
   - name: Debian - Install apt-transport-https to support https APT downloads
