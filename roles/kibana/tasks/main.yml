@@ -23,8 +23,6 @@
 - name: Install kibana
   apt:
     name: kibana
-    state: present
-
 
 - name: Copy kibana configuration
   copy:
