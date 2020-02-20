@@ -18,9 +18,7 @@
       repo: '{{ item.repo }}'
       state: '{{ item.state }}'
     with_items:
-      - { repo: "{{ es_apt_url_old }}", state: "absent" }
       - { repo: "{{ es_apt_url }}", state: "present" }
-      - { repo: "{{ es_other_apt_url }}", state: "absent" }
 
 - name: Install elasticsearch
   apt:
