@@ -20,6 +20,12 @@
     with_items:
       - { repo: "{{ es_apt_url }}", state: "present" }
 
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+
 - name: Install kibana
   apt:
     name: kibana
