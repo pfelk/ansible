@@ -22,6 +22,7 @@ before_install:
 
 install:
   - sudo apt-get install sshpass
+  - sudo apt install python-apt
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible-lint; fi
