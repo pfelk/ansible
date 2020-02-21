@@ -32,7 +32,6 @@ host_key_checking = False
 scp_if_ssh = True
 ```
 
-
 ### Prerequisites on managed nodes
 
 On the managed nodes, you need a way to communicate, which is normally ssh. By default this uses sftp. If that’s not available, you can switch to scp in ansible.cfg. You also need Python 2 (version 2.6 or later) or Python 3 (version 3.5 or later).
@@ -82,7 +81,7 @@ ansible-pfelk/
             └── main.yml
 ```
 
-
+## Deploy playbook 
 ### Clone the repository
 
 ```
