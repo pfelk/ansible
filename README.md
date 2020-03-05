@@ -128,7 +128,7 @@ You can follow the steps starting with the Firewall section at https://github.co
 ## Troubleshooting
 
 ### Testing the playbook with dry-run
- - include `--check` flag
+Include `--check` flag.
  - run `ansible-playbook -i hosts --check deploy-stack.yml`
 
 ### Deploy to localhost
@@ -139,5 +139,5 @@ To deploy the playbook to your local machine you need the do following:
  - run the playbook with: `ansible-playbook -i hosts --ask-pass --ask-become deploy-stack.yml`
  
 ### Enable verbose mode to debug problems
- - include `-vvvv` flag
+Include `-vvvv` flag.
  - run `ansible-playbook -i hosts --ask-pass --ask-become -vvvv deploy-stack.yml`
