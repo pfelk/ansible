@@ -29,13 +29,20 @@ Steps to reproduce the behavior:
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Operating System (please complete the following information):**
+**Platform Version informations (please complete the following information):**
  - OS (`printf "$(uname -srm)\n$(cat /etc/os-release)\n"`):
  - Version of Ansible (`ansible --version`):
  - Version of Python (`python --version`):
 
-**Elastic, Logstash, Kibana (please complete the following information):**
- - Version of ELK (`dpkg -l elasticsearch|logstash|kibana`)
+**Elastic, Logstash, Kibana:**
+ - Version of ELK (`dpkg -l elasticsearch|logstash|kibana`):
+
+**Verbose output of running Ansible**
+ - Output of failing Ansible task when run with -vvvv flag**:
+
+**Relevant entries of ELK service logs/status**
+ - `service elasticsearch|logstash|kibana status`
+ - `tail`ing corresponding logs eg. `/var/log/logstash-plain.log`
 
 **Additional context**
 Add any other context about the problem here.
