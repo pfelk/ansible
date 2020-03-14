@@ -12,16 +12,16 @@
 #Comment out the default line
 - name: Commenting out default line
   replace:
-    path: /etc/GeoIP.conf
+    path: /usr/local/etc/GeoIP.conf
     regexp: '^#(.*EditionIDs*)'
     replace: '\1'
 
 # Add a new line to GeoIP.conf
 - name: Add references to dbs
   lineinfile:
-    path: /etc/GeoIP.conf
+    path: /usr/local/etc/GeoIP.conf
     line: EditionIDs GeoLite2-City GeoLite2-Country GeoLite2-ASN
-    create: yes
+#    create: yes
 
 # Download the databases
 - name: Download Maxmind dbs
