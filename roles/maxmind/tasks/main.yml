@@ -8,18 +8,19 @@
 - name: Install geoipupdate
   apt:
     name: geoipupdate
+    state: present
 
 #Comment out the default line
 - name: Commenting out default line
   replace:
-    path: /usr/local/etc/GeoIP.conf
+    path: /etc/GeoIP.conf
     regexp: '^#(.*EditionIDs*)'
     replace: '\1'
 
 # Add a new line to GeoIP.conf
 - name: Add references to dbs
   lineinfile:
-    path: /usr/local/etc/GeoIP.conf
+    path: /etc/GeoIP.conf
     line: EditionIDs GeoLite2-City GeoLite2-Country GeoLite2-ASN
 #    create: yes
 
