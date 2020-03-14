@@ -77,8 +77,10 @@ ansible-pfelk/
     │   └── tasks
     │       └── main.yml
     └── maxmind
-        └── tasks
-            └── main.yml
+        ├── tasks
+        │   └── main.yml
+        └── templates
+            └── GeoIP.conf.j2
 ```
 
 ## Deploy playbook 
