@@ -17,7 +17,6 @@
     owner: root
     group: root
     mode: 0640
-  notify: Update GeoIP databases
 
 # Download the databases
 - name: Download Maxmind dbs
