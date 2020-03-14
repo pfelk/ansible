@@ -9,20 +9,14 @@
   apt:
     name: geoipupdate
     state: present
-
-#Comment out the default line
-- name: Commenting out default line
-  replace:
-    path: /etc/GeoIP.conf
-    regexp: '^#(.*EditionIDs*)'
-    replace: '\1'
-
-# Add a new line to GeoIP.conf
-- name: Add references to dbs
-  lineinfile:
-    path: /etc/GeoIP.conf
-    line: EditionIDs GeoLite2-City GeoLite2-Country GeoLite2-ASN
-#    create: yes
+    
+- name: Configure GeoIP update
+  template:
+    src: 'GeoIP.conf.j2'
+    dest: /etc/GeoIP.conf
+    owner: root
+    group: root
+    mode: 0640
 
 # Download the databases
 - name: Download Maxmind dbs
