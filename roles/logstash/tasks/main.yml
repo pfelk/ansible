@@ -15,7 +15,7 @@
 - name: Copy logstash configuration files
   copy:
     src: "{{ item }}"
-    dest: "/etc/logstash/conf.d/"
+    dest: /etc/logstash/conf.d/
     owner: root
     group: root
     mode: 0644
@@ -32,7 +32,7 @@
   file:
     path: /etc/logstash/conf.d/patterns
     state: directory
-    mode: 0644
+    mode: '0644'
 
 - name: Copy pattern file
   copy:
@@ -40,7 +40,7 @@
     dest: /etc/logstash/conf.d/patterns/pf-12.2019.grok
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
 
 - name: Start logstash
   systemd:
