@@ -70,8 +70,10 @@ ansible-pfelk/
     │   │   ├── 15-others.conf
     │   │   ├── 20-geoip.conf
     │   │   ├── 50-outputs.conf
-    │   │   └── patterns
-    │   │       └── pf-12.2019.grok
+    │   │   ├── patterns
+    │   │   │   └── pf-patterns.grok
+    │   │   └── template
+    │   │       └── pf-geoip-template.json
     │   ├── handlers
     │   │   └── main.yml
     │   └── tasks
@@ -80,7 +82,7 @@ ansible-pfelk/
         ├── tasks
         │   └── main.yml
         └── templates
-            └── GeoIP.conf.j2
+            └── GeoIP.conf.j2    
 ```
 
 ## Deploy playbook 
