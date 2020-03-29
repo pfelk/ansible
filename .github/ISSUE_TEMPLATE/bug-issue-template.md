@@ -37,7 +37,9 @@ If applicable, add screenshots to help explain your problem.
 **Elastic, Logstash, Kibana:**
  - Version of ELK (`dpkg -l elasticsearch|logstash|kibana`):
 
-**Verbose output of running Ansible**
+**Command used to invoke Ansible:**
+
+**Verbose output of running the ansible-playbook**
  - Output of failing Ansible task when run with `-vvvv` flag:
 
 **Relevant entries of ELK service logs/status**
