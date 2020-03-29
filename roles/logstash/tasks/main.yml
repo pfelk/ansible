@@ -36,11 +36,25 @@
 
 - name: Copy pattern file
   copy:
-    src: ../files/patterns/pf-12.2019.grok
-    dest: /etc/logstash/conf.d/patterns/pf-12.2019.grok
+    src: ../files/patterns/pf-patterns.grok
+    dest: /etc/logstash/conf.d/patterns/pf-patterns.grok
     owner: root
     group: root
     mode: '0644'
+    
+- name: Create template directory
+  file:
+    path: /etc/logstash/conf.d/template
+    state: directory
+    mode: '0644' 
+    
+- name: Copy template file
+  copy:
+    src: ../files/template/pf-geoip-template.json
+    dest: /etc/logstash/conf.d/template/pf-geoip-template.json
+    owner: root
+    group: root
+    mode: '0644'    
 
 - name: Start logstash
   systemd:
