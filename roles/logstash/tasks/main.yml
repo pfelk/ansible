@@ -21,11 +21,13 @@
     mode: 0644
   with_items:
     - 01-inputs.conf
-    - 11-firewall.conf
-    - 12-suricata.conf
-    - 13-snort.conf
-    - 15-others.conf
-    - 20-geoip.conf
+    - 05-firewall.conf
+    - 10-others.conf   
+    - 20-suricata.conf
+    - 25-snort.conf
+    - 30-geoip.conf
+    - 40-dns.conf
+    - 45-cleanup.conf
     - 50-outputs.conf
 
 - name: Create patterns directory
@@ -36,8 +38,8 @@
 
 - name: Copy pattern file
   copy:
-    src: ../files/patterns/pf-patterns.grok
-    dest: /etc/logstash/conf.d/patterns/pf-patterns.grok
+    src: ../files/patterns/pfelk.grok
+    dest: /etc/logstash/conf.d/patterns/pfelk.grok
     owner: root
     group: root
     mode: '0644'
