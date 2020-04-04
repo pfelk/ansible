@@ -32,7 +32,7 @@
   file:
     path: /etc/logstash/conf.d/patterns
     state: directory
-    mode: '0644'
+    mode: '0744'
 
 - name: Copy pattern file
   copy:
@@ -46,7 +46,7 @@
   file:
     path: /etc/logstash/conf.d/template
     state: directory
-    mode: '0644' 
+    mode: '0744' 
     
 - name: Copy template file
   copy:

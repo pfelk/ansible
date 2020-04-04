@@ -1,5 +1,5 @@
-- hosts: localhost
-# remote_user: user
+- hosts: elk
+  # remote_user:
   become: yes
   become_user: root
   roles:
