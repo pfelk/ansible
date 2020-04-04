@@ -1,63 +1,76 @@
-# 15-others.conf
-filter {
-  if "pf" in [tags] {
-    if [pf_program] =~ /^dhcpd$/ {
-      mutate {
-        add_tag => [ "dhcpd" ]
+{
+  "index_patterns" : "pf-*",
+  "version" : 60001,
+  "settings" : {
+    "index.refresh_interval" : "5s",
+    "number_of_shards": 2
+  },
+  "mappings" : {
+    "dynamic_templates" : [ {
+      "message_field" : {
+        "path_match" : "message",
+        "match_mapping_type" : "string",
+        "mapping" : {
+          "type" : "text",
+          "norms" : false
+        }
       }
-      grok {
-        patterns_dir => ["/etc/logstash/conf.d/patterns"]
-        match => [ "pf_message", "%{DHCPD}"]
+    }, {
+      "string_fields" : {
+        "match" : "*",
+        "match_mapping_type" : "string",
+        "mapping" : {
+          "type" : "text", "norms" : false,
+          "fields" : {
+            "keyword" : { "type": "keyword", "ignore_above": 256 }
+          }
+        }
       }
-    }
-    if [pf_program] =~ /^charon$/ {
-      mutate {
-        add_tag => [ "ipsec" ]
-      }
-    }
-    if [pf_program] =~ /^barnyard2/ {
-      mutate {
-        add_tag => [ "barnyard2" ]
-      }
-    }
-    if [pf_program] =~ /^openvpn/ {
-      mutate {
-        add_tag => [ "openvpn" ]
-      }
-      grok {
-        patterns_dir => ["/etc/logstash/conf.d/patterns"]
-        match => [ "pf_message", "%{OPENVPN}"]
-      }
-    }
-    if [pf_program] =~ /^ntpd/ {
-      mutate {
-        add_tag => [ "ntpd" ]
-      }
-    }
-    if [pf_program] =~ /^php-fpm/ {
-      mutate {
-        add_tag => [ "web_portal" ]
-      }
-      grok {
-        patterns_dir => ["/etc/logstash/conf.d/patterns"]
-        match => [ "pf_message", "%{PF_APP}%{PF_APP_DATA}"]
-      }
-      mutate {
-        lowercase => [ 'pf_ACTION' ]
-      }
-    }
-    if [pf_program] =~ /^unbound/ {
-      mutate {
-        add_tag => [ "unbound" ]
-      }
-      grok {
-        patterns_dir => ["/etc/logstash/conf.d/patterns"]
-        match => [ "pf_message", "%{UNBOUND}"]
-      }
-    }
-    if [pf_program] =~ /^dpinger/ {
-      mutate {
-        add_tag => [ "dpinger" ]
+    } ],
+    "properties" : {
+      "destination": {
+        "properties": {
+          "geo": {
+            "dynamic": true,
+            "properties": {
+              "ip": { "type": "ip" },
+              "location" : { "type" : "geo_point" },
+              "latitude" : { "type" : "half_float" },
+              "longitude" : { "type" : "half_float" }
+            }
+          },
+          "as": {
+            "dynamic": true,
+            "properties": {
+              "ip": { "type": "ip" },
+              "location" : { "type" : "geo_point" },
+              "latitude" : { "type" : "half_float" },
+              "longitude" : { "type" : "half_float" }
+            }
+          }
+        }
+      },
+      "source": {
+        "properties": {
+          "geo": {
+            "dynamic": true,
+            "properties": {
+              "ip": { "type": "ip" },
+              "location" : { "type" : "geo_point" },
+              "latitude" : { "type" : "half_float" },
+              "longitude" : { "type" : "half_float" }
+            }
+          },
+          "as": {
+            "dynamic": true,
+            "properties": {
+              "ip": { "type": "ip" },
+              "location" : { "type" : "geo_point" },
+              "latitude" : { "type" : "half_float" },
+              "longitude" : { "type" : "half_float" }
+            }
+          }
+        }
       }
     }
   }
