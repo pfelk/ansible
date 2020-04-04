@@ -92,9 +92,25 @@ ansible-pfelk/
 $ git clone https://github.com/3ilson/ansible-pfelk.git
 ```
 
-
 ### Define the host you want to deploy the ELK stack to
 Provide your target IP address in `ansible-pfelk/hosts` under `elk`, the ELK stack will be installed on this target.
+
+### Configure your inputs file
+
+#### Enter your pfSense/OPNsense IP address (01-inputs.conf)
+
+```
+Change line 9; the "if [host] =~ ..." should point to your pfSense/OPNsense IP address
+Change line 12; rename "firewall" (OPTIONAL) to identify your device (i.e. backup_firewall)
+Change line 15-22; (OPTIONAL) to point to your second PF IP address or ignore
+```
+
+#### Revise/Update w/pf IP address (01-inputs.conf)
+
+```
+For pfSense uncommit line 30 and commit out line 27
+For OPNsense uncommit line 27 and commit out line 30
+```
 
 ### Change current folder to ansible-pfelk/ then deploy the stack
 ```
@@ -141,7 +157,7 @@ To deploy the playbook to your local machine you need the do following:
  - if you choose not to use ssh keys, install `sshpass` for auth purposes
  - under `hosts` define your IP as `localhost`
  - run the playbook with: `ansible-playbook -i hosts --ask-pass --ask-become deploy-stack.yml`
- 
+
 ### Enable verbose mode to debug problems
 Include `-vvvv` flag.
  - run `ansible-playbook -i hosts --ask-pass --ask-become -vvvv deploy-stack.yml`
