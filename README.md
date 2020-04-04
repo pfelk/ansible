@@ -64,14 +64,16 @@ ansible-pfelk/
     ├── logstash
     │   ├── files
     │   │   ├── 01-inputs.conf
-    │   │   ├── 11-firewall.conf
-    │   │   ├── 12-suricata.conf
-    │   │   ├── 13-snort.conf
-    │   │   ├── 15-others.conf
-    │   │   ├── 20-geoip.conf
+    │   │   ├── 05-firewall.conf
+    │   │   ├── 10-others.conf
+    │   │   ├── 20-suricata.conf
+    │   │   ├── 25-snort.conf
+    │   │   ├── 30-geoip.conf
+    |   |   ├── 40-dns.conf
+    │   │   ├── 45-cleanup.conf   
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
-    │   │   │   └── pf-patterns.grok
+    │   │   │   └── pfelk.grok
     │   │   └── template
     │   │       └── pf-geoip-template.json
     │   ├── handlers
@@ -100,16 +102,16 @@ Provide your target IP address in `ansible-pfelk/hosts` under `elk`, the ELK sta
 #### Enter your pfSense/OPNsense IP address (01-inputs.conf)
 
 ```
-Change line 9; the "if [host] =~ ..." should point to your pfSense/OPNsense IP address
-Change line 12; rename "firewall" (OPTIONAL) to identify your device (i.e. backup_firewall)
-Change line 15-22; (OPTIONAL) to point to your second PF IP address or ignore
+Change line 12; the "if [host] =~ ..." should point to your pfSense/OPNsense IP address
+Change line 15; rename "firewall" (OPTIONAL) to identify your device (i.e. backup_firewall)
+Change line 18-27; (OPTIONAL) to point to your second PF IP address or ignore
 ```
 
 #### Revise/Update w/pf IP address (01-inputs.conf)
 
 ```
-For pfSense uncommit line 30 and commit out line 27
-For OPNsense uncommit line 27 and commit out line 30
+For pfSense uncommit line 34 and commit out line 31
+For OPNsense uncommit line 31 and commit out line 34
 ```
 
 ### Change current folder to ansible-pfelk/ then deploy the stack
