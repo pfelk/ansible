@@ -2,6 +2,9 @@
 Ansible playbook automation for deploying pfelk
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ansible)
+
+You can deploy with using [Ansible Galaxy Collection](https://galaxy.ansible.com/fktkrt/ansible_pfelk) or with using the manual deploy process.
+
 ## Prerequisites 
 
 ### Prerequisites on control nodes
@@ -86,7 +89,12 @@ ansible-pfelk/
         └── templates
             └── GeoIP.conf.j2    
 ```
+## Deploy with Ansible Galaxy Collections
+```
+$ ansible-galaxy collection install fktkrt.ansible_pfelk
+```
 
+## Manual Ansible playbook
 ## Deploy playbook 
 ### Clone the repository
 
