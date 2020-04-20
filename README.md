@@ -3,7 +3,8 @@ Ansible playbook automation for deploying pfelk
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ansible)
 
-You can deploy with using [Ansible Galaxy Collection](https://galaxy.ansible.com/fktkrt/ansible_pfelk) or with using the manual deploy process.
+You can deploy using [Ansible Galaxy Collection](https://galaxy.ansible.com/fktkrt/ansible_pfelk) or with using the manual deploy process.
+Note: When using the Ansible Galaxy Collection, you have to manually create a hosts file, and use the playbook provided in this repository, finally configure `GeoIP.conf`.
 
 ## Prerequisites 
 
