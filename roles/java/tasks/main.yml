@@ -1,5 +1,13 @@
 ---
 
+- name: Install openjdk repository
+  become: yes
+  block:
+  - name: Add repository
+    apt:
+      name: openjdk/ppa
+      state: present
+
 - name: Update APT package manager repositories cache
   become: true
   apt:
