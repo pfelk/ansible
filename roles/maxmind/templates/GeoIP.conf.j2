@@ -1,16 +1,15 @@
 # {{ ansible_managed }}
 
-# The following UserId and LicenseKey are required placeholders:
-UserId 
-LicenseKey 
+# Please see https://dev.maxmind.com/geoip/geoipupdate/ for instructions
+# on setting up geoipupdate, including information on how to download a
+# pre-filled GeoIP.conf file.
 
-# Include one or more of the following ProductIds:
-# * GeoLite2-City - GeoLite 2 City
-# * GeoLite2-Country - GeoLite2 Country
-# * GeoLite-Legacy-IPv6-City - GeoLite Legacy IPv6 City
-# * GeoLite-Legacy-IPv6-Country - GeoLite Legacy IPv6 Country
-# * 506 - GeoLite Legacy Country
-# * 517 - GeoLite Legacy ASN
-# * 533 - GeoLite Legacy City
-
-EditionIDs GeoLite2-City GeoLite2-Country GeoLite2-ASN
+# Replace YOUR_ACCOUNT_ID_HERE and YOUR_LICENSE_KEY_HERE with an active account
+# ID and license key combination associated with your MaxMind account. These
+# are available from https://www.maxmind.com/en/my_license_key.
+AccountID {{ geoipupdate_account_id }}
+LicenseKey {{ geoipupdate_license_key }}
+ 
+# Enter the edition IDs of the databases you would like to update.
+# Multiple edition IDs are separated by spaces.
+EditionIDs {{ geoipupdate_edition_ids | join(' ') }}
