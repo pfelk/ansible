@@ -5,13 +5,9 @@
   block:
   - name: Add repository
     apt:
-      name: ppa:openjdk-r/ppa
+      apt-repository: ppa:openjdk-r/ppa
+      update_cache: yes
       state: present
-
-- name: Update APT package manager repositories cache
-  become: true
-  apt:
-    update_cache: yes
 
 - name: Install OpenJDK Java
   become: yes
