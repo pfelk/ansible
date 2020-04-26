@@ -4,7 +4,7 @@
   become_user: root
   roles:
     - { role: java }
-    - { role: maxmind }
+    - role: maxmind
       vars:
         geoipupdate_account_id: 123
         geoipupdate_license_key: "ABCDEF"
