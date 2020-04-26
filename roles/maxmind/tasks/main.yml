@@ -18,11 +18,7 @@
     owner: root
     group: root
     mode: 0640
-
-# Download the databases
-- name: Download Maxmind dbs
-  shell:
-    cmd: geoipupdate -d /usr/share/GeoIP/
+  notify: run geoipupdate
 
 # Add cron job
 - name: Creates a cron file under /etc/cron.d
