@@ -1,7 +1,8 @@
 ---
 
 # Add Maxmind repository
-- apt_repository:
+- name: Add Maxmind repository
+  apt_repository:
     repo: ppa:maxmind/ppa
 
 # Install geoipupdate
@@ -9,7 +10,7 @@
   apt:
     name: geoipupdate
     state: present
-    
+
 - name: Configure GeoIP update
   template:
     src: 'GeoIP.conf.j2'

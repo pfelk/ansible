@@ -1,4 +1,4 @@
---- 
+---
 
 - name: Install Elasticsearch repository
   become: yes
@@ -27,7 +27,7 @@
 
 - name: Copy elasticsearch configuration
   copy:
-    src: "../files/elasticsearch.yml"
+    src: "files/elasticsearch.yml"
     dest: "/etc/elasticsearch/elasticsearch.yml"
     owner: root
     group: elasticsearch

@@ -1,4 +1,4 @@
---- 
+---
 
 - name: Install Elasticsearch repository
   become: yes
@@ -27,7 +27,7 @@
 
 - name: Copy kibana configuration
   copy:
-    src: "../files/kibana.yml"
+    src: "files/kibana.yml"
     dest: "/etc/kibana/kibana.yml"
     owner: root
     group: root
