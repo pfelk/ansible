@@ -74,8 +74,8 @@ ansible-pfelk/
     │   │   ├── 20-suricata.conf
     │   │   ├── 25-snort.conf
     │   │   ├── 30-geoip.conf
-    |   |   ├── 40-dns.conf
-    │   │   ├── 45-cleanup.conf   
+    │   │   ├── 40-dns.conf
+    │   │   ├── 45-cleanup.conf
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
     │   │   │   └── pfelk.grok
@@ -86,10 +86,13 @@ ansible-pfelk/
     │   └── tasks
     │       └── main.yml
     └── maxmind
+        ├── handlers
+        │   └── main.yml
         ├── tasks
         │   └── main.yml
         └── templates
-            └── GeoIP.conf.j2    
+            └── GeoIP.conf.j2
+
 ```
 ## Deploy with Ansible Galaxy Collections
 ```
