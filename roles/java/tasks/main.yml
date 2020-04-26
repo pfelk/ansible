@@ -5,7 +5,7 @@
   block:
   - name: Add repository
     apt:
-      name: openjdk/ppa
+      name: ppa:openjdk
       state: present
 
 - name: Update APT package manager repositories cache
