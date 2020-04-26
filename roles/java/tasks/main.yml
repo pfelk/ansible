@@ -6,13 +6,9 @@
   - name: Add repository
     apt_repository:
       repo: ppa:openjdk-r/ppa
-      update_cache: yes
       state: present
 
-- name: Install OpenJDK Java
-  become: yes
+- name: Update repositories cache and install "openjdk" package
   apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - openjdk-11-jdk
+    name: openjdk-11-jdk
+    update_cache: yes
