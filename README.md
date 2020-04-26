@@ -5,7 +5,7 @@ Ansible playbook automation for deploying pfelk
 
 You can deploy using [Ansible Galaxy Collection](https://galaxy.ansible.com/fktkrt/ansible_pfelk) or with using the manual deploy process.
 
-Note: When using the Ansible Galaxy Collection, you have to manually create a hosts file, and use the playbook provided in this repository, finally configure `GeoIP.conf`.
+Note: When using the Ansible Galaxy Collection, you have to manually create a hosts file, and use the playbook provided in this repository.
 
 ## Prerequisites 
 
@@ -110,6 +110,16 @@ $ git clone https://github.com/3ilson/ansible-pfelk.git
 ### Define the host you want to deploy the ELK stack to
 Provide your target IP address in `ansible-pfelk/hosts` under `elk`, the ELK stack will be installed on this target.
 
+### Configure Maxmind geoipupdate
+- Create a Max Mind Account @ https://www.maxmind.com/en/geolite2/signup
+- Login to your Max Mind Account; navigate to "My License Key" under "Services" and Generate new license key
+- Configure your credentials at playbook level in `deploy-stack.yml`:
+```
+vars:
+  geoipupdate_account_id: 123
+  geoipupdate_license_key: "ABCDEF"
+```
+
 ### Configure your inputs file
 
 #### Enter your pfSense/OPNsense IP address (01-inputs.conf)
@@ -135,7 +145,7 @@ $ ansible-playbook -i hosts --ask-become deploy-stack.yml
 
 This will take care of the following tasks:
  - install java
- - install maxmind
+ - install maxmind geoipupdate
    - download GeoIP databases
    - setup a cron job for automated updates
  - install elasticsearch
@@ -143,19 +153,6 @@ This will take care of the following tasks:
  - install logstash
    - copy the `.conf` files, patterns and templates to their corresponding locations
 
-### Manually register and configure Maxmind
-
-### Configure Maxmind
-- Create a Max Mind Account @ https://www.maxmind.com/en/geolite2/signup
-- Login to your Max Mind Account; navigate to "My License Key" under "Services" and Generate new license key
-```
-$ sudo nano /etc/GeoIP.conf
-```
-- Modify lines 7 & 8 as follows (without < >):
-```
-AccountID <Input Your Account ID>
-LicenseKey <Input Your LicenseKey>
-```
 ## Finish the configuration
 
 You can follow the steps starting with the Firewall section at https://github.com/a3ilson/pfelk/blob/master/install/configuration.md
