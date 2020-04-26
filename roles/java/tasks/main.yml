@@ -4,8 +4,8 @@
   become: yes
   block:
   - name: Add repository
-    apt:
-      apt-repository: ppa:openjdk-r/ppa
+    apt-repository:
+      repo: ppa:openjdk-r/ppa
       update_cache: yes
       state: present
 
