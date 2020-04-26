@@ -1,14 +1,16 @@
 ---
 
-- name: Install openjdk repository
-  become: yes
-  block:
-  - name: Add repository
-    apt_repository:
-      repo: ppa:openjdk-r/ppa
-      state: present
+- name: Download Java
+  command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
 
-- name: Update repositories cache and install "openjdk" package
-  apt:
-    name: openjdk-11-jdk
-    update_cache: yes
+- name: Unpack archive
+  command: "tar -zxf {{java_archive}} -C {{download_folder}} creates={{java_name}}"
+
+- name: Fix ownership
+  file: state=directory path={{java_name}} owner=root group=root recurse=yes
+
+- name: Make Java available for system
+  command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
+
+- name: Clean up
+  file: state=absent path={{java_archive}}
