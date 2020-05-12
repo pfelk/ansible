@@ -33,6 +33,9 @@ If applicable, add screenshots to help explain your problem.
  - OS (`printf "$(uname -srm)\n$(cat /etc/os-release)\n"`):
  - Version of Ansible (`ansible --version`):
  - Version of Python (`python --version`):
+ 
+ **Deploy method:**
+  - Ansible Galaxy Collection (with release) or ansible-playbook
 
 **Elastic, Logstash, Kibana:**
  - Version of ELK (`dpkg -l elasticsearch|logstash|kibana`):
