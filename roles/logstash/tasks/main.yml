@@ -46,14 +46,14 @@
 
 - name: Create template directory
   file:
-    path: /etc/logstash/conf.d/template
+    path: /etc/logstash/conf.d/templates
     state: directory
     mode: '0744'
 
 - name: Copy template file
   copy:
     src: files/template/pf-geoip-template.json
-    dest: /etc/logstash/conf.d/template/pf-geoip-template.json
+    dest: /etc/logstash/conf.d/templates/pf-geoip-template.json
     owner: root
     group: root
     mode: '0644'
