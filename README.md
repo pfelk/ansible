@@ -11,9 +11,9 @@ Note: When using the Ansible Galaxy Collection, you have to manually create a ho
 
 ### Prerequisites on control nodes
 
-Currently Ansible can be run from any machine with Python 2 (version 2.7) or Python 3 (versions 3.5 and higher) installed. Windows is not supported for the control node.
+Currently Ansible can be run from any machine with Python 2 (version 2.7) or Python 3 (versions 3.5 and higher) installed. This includes linux distributions e.g. Red Hat, Debian, CentOS, macOS, any of the BSDs. Windows is not supported for the control node.
 
-Take a look at the following link regarding further details on initial requirements: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+> Take a look at the following link regarding further details on initial requirements: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
 ### Add Ansible apt repository and install the package for Ubuntu
 ```
@@ -22,6 +22,8 @@ $ sudo apt install software-properties-common
 $ sudo apt-add-repository --yes --update ppa:ansible/ansible
 $ sudo apt install ansible
 ```
+
+> Installation details for further distributions are available [on the official site](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#selecting-an-ansible-version-to-install).
 
 ### Create Ansible configuration (optional)
 
@@ -39,7 +41,7 @@ scp_if_ssh = True
 
 ### Prerequisites on managed nodes
 
-On the managed nodes, you need a way to communicate, which is normally ssh. By default this uses sftp. If that’s not available, you can switch to scp in ansible.cfg. You also need Python 2 (version 2.6 or later) or Python 3 (version 3.5 or later).
+To interact with your managed nodes, you will only need ssh. You don't have to install any other additonal agent on those hosts.
 
 ### Tree of Ansible setup
 ```
@@ -110,9 +112,9 @@ $ git clone https://github.com/3ilson/ansible-pfelk.git
 ### Define the host you want to deploy the ELK stack to
 Provide your target IP address in `ansible-pfelk/hosts` under `elk`, the ELK stack will be installed on this target.
 
-### Configure Maxmind geoipupdate
-- Create a Max Mind Account @ https://www.maxmind.com/en/geolite2/signup
-- Login to your Max Mind Account; navigate to "My License Key" under "Services" and Generate new license key
+### Configure MaxMind geoipupdate
+- Create a MaxMind account at: https://www.maxmind.com/en/geolite2/signup
+- Login to your MaxMind account; navigate to "My License Key" under "Services" and Generate new license key
 - Configure your credentials at playbook level in `deploy-stack.yml`:
 ```
 vars:
@@ -124,18 +126,27 @@ vars:
 
 #### Enter your pfSense/OPNsense IP address (01-inputs.conf)
 
-```
-Change line 12; the "if [host] =~ ..." should point to your pfSense/OPNsense IP address
-Change line 15; rename "firewall" (OPTIONAL) to identify your device (i.e. backup_firewall)
-Change line 18-27; (OPTIONAL) to point to your second PF IP address or ignore
-```
+Change line 12:
+the `[host] =~ /172\.22\.33\.1/ ` should point to your pfSense/OPNsense IP address, make sure to properly escape the `.` characters
 
-#### Revise/Update w/pf IP address (01-inputs.conf)
+Change line 15:
+rename `firewall` (optional) to identify your device (i.e. backup_firewall)
+
+Configure line 18-27 (optional) to point to your second PF IP address if you have any.
+
+At the following section
 
 ```
-For pfSense uncommit line 34 and commit out line 31
-For OPNsense uncommit line 31 and commit out line 34
+grok {
+  # OPNsense - Enable/Disable the line below based on firewall platform
+  # match => { "message" => "<(?<[event][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{SYSLOGHOST:[observer][name]} %{DATA:labels}(?:\[%{POSINT:pf_pid}\])?: %{GREEDYDATA:pf_message}" }
+  ########################################################################################################################################
+  # pfSense - Enable/Disable the line below based on firewall platform
+  # match => { "message" => "<(?<[event][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{DATA:labels}(?:\[%{POSINT:[event][id]}\])?: %{GREEDYDATA:pf_message}" }
+...
 ```
+uncomment the instance type's match line you want to monitor.
+
 
 ### Change current folder to ansible-pfelk/ then deploy the stack
 ```
