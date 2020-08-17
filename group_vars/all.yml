@@ -1,10 +1,5 @@
 ---
 
-download_url: http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
-download_folder: /opt
-java_name: "{{download_folder}}/jdk1.8.0_131"
-java_archive: "{{download_folder}}/jdk-8u131-linux-x64.tar.gz"
-
 update_java: false
 java_version: "{% if ansible_os_family == 'Debian' and ansible_distribution_major_version == '10' %}11{% else %}8{% endif %}"
 java: "{% if es_java is defined %}{{es_java}}{% else %}openjdk-{{ java_version }}-jre-headless{% endif %}"
