@@ -16,7 +16,7 @@
 
 - name: Debian - Ensure Java is installed
   become: yes
-  apt: name={{ java }} state={{java_state}}
+  apt: name={{ java }} state={{ java_state }}
   when: ansible_os_family == 'Debian'
 
 - name: register open_jdk version
