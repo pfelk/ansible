@@ -1,16 +1,33 @@
 ---
 
-- name: Download Java
-  command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
+- name: set fact java_state to present
+  set_fact: java_state="present"
 
-- name: Unpack archive
-  command: "tar -zxf {{java_archive}} -C {{download_folder}} creates={{java_name}}"
+- name: set fact java_state to latest
+  set_fact: java_state="latest"
+  when: update_java == true
 
-- name: Fix ownership
-  file: state=directory path={{java_name}} owner=root group=root recurse=yes
+- name: Refresh java repo
+  become: yes
+  apt: update_cache=yes
+  changed_when: false
+  when: ansible_os_family == 'Debian'
 
-- name: Make Java available for system
-  command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
+- name: Debian - Ensure Java is installed
+  become: yes
+  apt: name={{ java }} state={{java_state}}
+  when: ansible_os_family == 'Debian'
 
-- name: Clean up
-  file: state=absent path={{java_archive}}
+- name: register open_jdk version
+  shell: java -version 2>&1 | grep OpenJDK
+  register: open_jdk
+  ignore_errors: yes
+  changed_when: false
+  check_mode: no
+
+#https://github.com/docker-library/openjdk/issues/19 - ensures tests pass due to java 8 broken certs
+- name: refresh the java ca-certificates
+  become: yes
+  command: /var/lib/dpkg/info/ca-certificates-java.postinst configure
+  when: ansible_distribution == 'Ubuntu' and open_jdk.rc == 0
+  changed_when: false
