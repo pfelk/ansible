@@ -71,18 +71,21 @@ ansible-pfelk/
     ├── logstash
     │   ├── files
     │   │   ├── 01-inputs.conf
+    │   │   ├── 02-types.conf
+    │   │   ├── 03-filter.conf   
     │   │   ├── 05-firewall.conf
     │   │   ├── 10-others.conf
+    │   │   ├── 15-squid.conf    
     │   │   ├── 20-suricata.conf
     │   │   ├── 25-snort.conf
     │   │   ├── 30-geoip.conf
-    │   │   ├── 40-dns.conf
+    │   │   ├── 35-rules-desc.conf    
     │   │   ├── 45-cleanup.conf
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
     │   │   │   └── pfelk.grok
     │   │   └── template
-    │   │       └── pf-geoip-template.json
+    │   │       └── pf-geoip.json
     │   ├── handlers
     │   │   └── main.yml
     │   └── tasks
@@ -124,28 +127,27 @@ vars:
 
 ### Configure your inputs file
 
-#### Enter your pfSense/OPNsense IP address (01-inputs.conf)
+#### Enter your pfSense/OPNsense IP address (02-types.conf)
 
-Change line 12:
-the `[host] =~ /172\.22\.33\.1/ ` should point to your pfSense/OPNsense IP address, make sure to properly escape the `.` characters
+Change line 5:
+the `[host] == "192.168.9.1" ` should point to your pfSense/OPNsense IP address
 
-Change line 15:
+Change line 8:
 rename `firewall` (optional) to identify your device (i.e. backup_firewall)
 
-Configure line 18-27 (optional) to point to your second PF IP address if you have any.
+Configure line 11-20 (optional) to point to your second PF IP address if you have any.
 
-At the following section
+At the following section within the 03-filter.conf file, lines 4 & 5
 
 ```
-grok {
-  # OPNsense - Enable/Disable the line below based on firewall platform
-  # match => { "message" => "<(?<[event][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{SYSLOGHOST:[observer][name]} %{DATA:labels}(?:\[%{POSINT:pf_pid}\])?: %{GREEDYDATA:pf_message}" }
-  ########################################################################################################################################
-  # pfSense - Enable/Disable the line below based on firewall platform
-  # match => { "message" => "<(?<[event][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{DATA:labels}(?:\[%{POSINT:[event][id]}\])?: %{GREEDYDATA:pf_message}" }
+# 03-filter.conf
+filter {
+  grok {
+    #OPN# match => {"message" => "<(?<[priority][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{SYSLOGHOST:[observer][name]} %{GREEDYDATA:filter_message}"} #OPNSense#
+    #PF# match => {"message" => "<(?<[priority][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{GREEDYDATA:filter_message}"} #pfSense#
 ...
 ```
-uncomment the instance type's match line you want to monitor.
+uncomment the instance type's match line you want to monitor (e.g. remove #PF# or #OPN#
 
 
 ### Change current folder to ansible-pfelk/ then deploy the stack
