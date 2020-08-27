@@ -55,7 +55,7 @@
 
 - name: Copy template file
   copy:
-    src: files/template/pf-geoip-template.json
+    src: files/template/pf-geoip.json
     dest: /etc/logstash/conf.d/templates/pf-geoip.json
     owner: root
     group: root
