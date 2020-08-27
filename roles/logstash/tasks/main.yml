@@ -21,12 +21,15 @@
     mode: 0644
   with_items:
     - 01-inputs.conf
+    - 02-types.conf
+    - 03-filter.conf
     - 05-firewall.conf
     - 10-others.conf
+    - 15-squid.conf
     - 20-suricata.conf
     - 25-snort.conf
     - 30-geoip.conf
-    - 40-dns.conf
+    - 35-rules-desc.conf
     - 45-cleanup.conf
     - 50-outputs.conf
 
@@ -53,7 +56,7 @@
 - name: Copy template file
   copy:
     src: files/template/pf-geoip-template.json
-    dest: /etc/logstash/conf.d/templates/pf-geoip-template.json
+    dest: /etc/logstash/conf.d/templates/pf-geoip.json
     owner: root
     group: root
     mode: '0644'
