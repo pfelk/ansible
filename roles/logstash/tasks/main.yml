@@ -37,19 +37,19 @@
     - { src '/files/template/pf-geoip.json',dest: '/etc/logstash/conf.d/templates/pf-geoip.json', mode: '0644'}
     - { src '/files/databases/pfelk.grok',dest: '/etc/logstash/conf.d/databases/rule-names.csv', mode: '0644'}
     - { src '/files/databases/pfelk.grok',dest: '/etc/logstash/conf.d/databases/service-names-port-numbers.csv', mode: '0644'}
-    - { src '/files/01-inputs.conf',dest: '/etc/logstash/conf.d/01-inputs.conf', mode: '0644'}
-    - { src '/files/02-types.conf',dest: '/etc/logstash/conf.d/02-types.conf', mode: '0644'}
-    - { src '/files/03-filter.conf',dest: '/etc/logstash/conf.d/03-filter.conf', mode: '0644'}
-    - { src '/files/05-firewall.conf',dest: '/etc/logstash/conf.d/05-firewall.conf', mode: '0644'}
-    - { src '/files/10-others.conf',dest: '/etc/logstash/conf.d/10-others.conf', mode: '0644'}
-    - { src '/files/15-squid.conf',dest: '/etc/logstash/conf.d/15-squid.conf', mode: '0644'}
-    - { src '/files/20-suricata.conf',dest: '/etc/logstash/conf.d/20-suricata.conf', mode: '0644'}
-    - { src '/files/25-snort.conf',dest: '/etc/logstash/conf.d/25-snort.conf', mode: '0644'}
-    - { src '/files/30-geoip.conf',dest: '/etc/logstash/conf.d/30-geoip.conf', mode: '0644'}
-    - { src '/files/35-rules-desc.conf',dest: '/etc/logstash/conf.d/35-rules-desc.conf', mode: '0644'}
-    - { src '/files/36-ports-desc.conf',dest: '/etc/logstash/conf.d/36-ports-desc.conf', mode: '0644'}
-    - { src '/files/45-cleanup.conf',dest: '/etc/logstash/conf.d/45-cleanup.conf', mode: '0644'}
-    - { src '/files/50-outputs.conf',dest: '/etc/logstash/conf.d/50-outputs.conf', mode: '0644'}
+    - { src '/01-inputs.conf',dest: '/etc/logstash/conf.d/01-inputs.conf', mode: '0644'}
+    - { src '/02-types.conf',dest: '/etc/logstash/conf.d/02-types.conf', mode: '0644'}
+    - { src '/03-filter.conf',dest: '/etc/logstash/conf.d/03-filter.conf', mode: '0644'}
+    - { src '/05-firewall.conf',dest: '/etc/logstash/conf.d/05-firewall.conf', mode: '0644'}
+    - { src '/10-others.conf',dest: '/etc/logstash/conf.d/10-others.conf', mode: '0644'}
+    - { src '/15-squid.conf',dest: '/etc/logstash/conf.d/15-squid.conf', mode: '0644'}
+    - { src '/20-suricata.conf',dest: '/etc/logstash/conf.d/20-suricata.conf', mode: '0644'}
+    - { src '/25-snort.conf',dest: '/etc/logstash/conf.d/25-snort.conf', mode: '0644'}
+    - { src '/30-geoip.conf',dest: '/etc/logstash/conf.d/30-geoip.conf', mode: '0644'}
+    - { src '/35-rules-desc.conf',dest: '/etc/logstash/conf.d/35-rules-desc.conf', mode: '0644'}
+    - { src '/36-ports-desc.conf',dest: '/etc/logstash/conf.d/36-ports-desc.conf', mode: '0644'}
+    - { src '/45-cleanup.conf',dest: '/etc/logstash/conf.d/45-cleanup.conf', mode: '0644'}
+    - { src '/50-outputs.conf',dest: '/etc/logstash/conf.d/50-outputs.conf', mode: '0644'}
 
 - name: Start logstash
   systemd:
