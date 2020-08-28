@@ -29,6 +29,8 @@
   copy: 
     src: "{{ item.src }}" 
     dest: "{{ item.dest }}"
+    owner: root
+    group: root
     mode: "{{ item.mode }}"
   with_items:
     - { src '/files/patterns/pfelk.grok',dest: '/etc/logstash/conf.d/patterns/pfelk.grok', mode: '0644'}
