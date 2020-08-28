@@ -40,7 +40,7 @@
     state: directory
     mode: '0744'
 
-- name: Copy pattern file
+- name: Copy patterns file
   copy:
     src: files/patterns/pfelk.grok
     dest: /etc/logstash/conf.d/patterns/pfelk.grok
@@ -68,7 +68,7 @@
     state: directory
     mode: '0744'
 
-- name: Copy database files
+- name: Copy databases files
   copy:
     src: "{{ item }}"
     dest: /etc/logstash/conf.d/databases/
