@@ -27,8 +27,9 @@
 
 - name: Copy pfELK Files
   copy: 
-    src={{ item.src }} 
-    dest={{ item.dest }}
+    src: "{{ item.src }}" 
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
   with_items:
     - { src 'files/patterns/pfelk.grok',dest: '/etc/logstash/conf.d/patterns/pfelk.grok', mode: '0644'}
     - { src 'files/template/pf-geoip.json',dest: '/etc/logstash/conf.d/templates/pf-geoip.json', mode: '0644'}
