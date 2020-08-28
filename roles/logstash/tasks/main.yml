@@ -12,70 +12,42 @@
 - name: Install logstash
   apt: name=logstash state=present
 
-- name: Copy logstash configuration files
-  copy:
-    src: "{{ item }}"
-    dest: /etc/logstash/conf.d/
+- name: Create Required Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0744
     owner: root
     group: root
-    mode: 0644
+    mode: '0744'
   with_items:
-    - 01-inputs.conf
-    - 02-types.conf
-    - 03-filter.conf
-    - 05-firewall.conf
-    - 10-others.conf
-    - 15-squid.conf
-    - 20-suricata.conf
-    - 25-snort.conf
-    - 30-geoip.conf
-    - 35-rules-desc.conf
-    - 36-ports-desc.conf
-    - 45-cleanup.conf
-    - 50-outputs.conf
+    - '/etc/logstash/conf.d/patterns'
+    - '/etc/logstash/conf.d/templates'
+    - '/etc/logstash/conf.d/databases'
 
-- name: Create patterns directory
-  file:
-    path: /etc/logstash/conf.d/patterns
-    state: directory
-    mode: '0744'
-
-- name: Copy patterns file
-  copy:
-    src: files/patterns/pfelk.grok
-    dest: /etc/logstash/conf.d/patterns/pfelk.grok
+- name: Copy pfELK Files
+  copy: src={{ item.src }} dest={{ item.dest }}
     owner: root
     group: root
     mode: '0644'
-
-- name: Create templates directory
-  file:
-    path: /etc/logstash/conf.d/templates
-    state: directory
-    mode: '0744'
-
-- name: Copy templates file
-  copy:
-    src: files/template/pf-geoip.json
-    dest: /etc/logstash/conf.d/templates/pf-geoip.json
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Create databases directory
-  file:
-    path: /etc/logstash/conf.d/databases
-    state: directory
-    mode: '0744'
-
-- name: Copy databases files
-  copy:
-    src: /etc/logstash/conf.d/databases/rule-names.csv
-    src: /etc/logstash/conf.d/databases/service-names-port-numbers.csv
-    dest: /etc/logstash/conf.d/databases/
-    owner: root
-    group: root
-    mode: 0644
+  with_items:
+    - { src 'files/patterns/pfelk.grok', dest: '/etc/logstash/conf.d/patterns/pfelk.grok'}
+    - { src 'files/template/pf-geoip.json', dest: '/etc/logstash/conf.d/templates/pf-geoip.json'}
+    - { src 'files/databases/pfelk.grok', dest: '/etc/logstash/conf.d/databases/rule-names.csv'}
+    - { src 'files/databases/pfelk.grok', dest: '/etc/logstash/conf.d/databases/service-names-port-numbers.csv'}
+    - { src 'files/01-inputs.conf', dest: '/etc/logstash/conf.d/01-inputs.conf'}
+    - { src 'files/02-types.conf', dest: '/etc/logstash/conf.d/02-types.conf'}
+    - { src 'files/03-filter.conf', dest: '/etc/logstash/conf.d/03-filter.conf'}
+    - { src 'files/05-firewall.conf', dest: '/etc/logstash/conf.d/05-firewall.conf'}
+    - { src 'files/10-others.conf', dest: '/etc/logstash/conf.d/10-others.conf'}
+    - { src 'files/15-squid.conf', dest: '/etc/logstash/conf.d/15-squid.conf'}
+    - { src 'files/20-suricata.conf', dest: '/etc/logstash/conf.d/20-suricata.conf'}
+    - { src 'files/25-snort.conf', dest: '/etc/logstash/conf.d/25-snort.conf'}
+    - { src 'files/30-geoip.conf', dest: '/etc/logstash/conf.d/30-geoip.conf'}
+    - { src 'files/35-rules-desc.conf', dest: '/etc/logstash/conf.d/35-rules-desc.conf'}
+    - { src 'files/36-ports-desc.conf', dest: '/etc/logstash/conf.d/36-ports-desc.conf'}
+    - { src 'files/45-cleanup.conf', dest: '/etc/logstash/conf.d/45-cleanup.conf'}
+    - { src 'files/50-outputs.conf', dest: '/etc/logstash/conf.d/50-outputs.conf'}
 
 - name: Start logstash
   systemd:
