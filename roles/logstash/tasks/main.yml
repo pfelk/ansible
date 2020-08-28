@@ -28,28 +28,28 @@
 - name: Copy pfELK Files
   copy: 
     src: "{{ item.src }}" 
-    dest: "{{ item.dest }}"
+    dest: /etc/logstash/conf.d/
     owner: root
     group: root
-    mode: "{{ item.mode }}"
+    mode: '0644'
   with_items:
-    - { src 'files/patterns/pfelk.grok',dest: '/etc/logstash/conf.d/patterns/pfelk.grok', mode: '0644'}
-    - { src 'files/template/pf-geoip.json',dest: '/etc/logstash/conf.d/templates/pf-geoip.json', mode: '0644'}
-    - { src 'files/databases/pfelk.grok',dest: '/etc/logstash/conf.d/databases/rule-names.csv', mode: '0644'}
-    - { src 'files/databases/pfelk.grok',dest: '/etc/logstash/conf.d/databases/service-names-port-numbers.csv', mode: '0644'}
-    - { src '01-inputs.conf',dest: '/etc/logstash/conf.d/01-inputs.conf', mode: '0644'}
-    - { src '02-types.conf',dest: '/etc/logstash/conf.d/02-types.conf', mode: '0644'}
-    - { src '03-filter.conf',dest: '/etc/logstash/conf.d/03-filter.conf', mode: '0644'}
-    - { src '05-firewall.conf',dest: '/etc/logstash/conf.d/05-firewall.conf', mode: '0644'}
-    - { src '10-others.conf',dest: '/etc/logstash/conf.d/10-others.conf', mode: '0644'}
-    - { src '15-squid.conf',dest: '/etc/logstash/conf.d/15-squid.conf', mode: '0644'}
-    - { src '20-suricata.conf',dest: '/etc/logstash/conf.d/20-suricata.conf', mode: '0644'}
-    - { src '25-snort.conf',dest: '/etc/logstash/conf.d/25-snort.conf', mode: '0644'}
-    - { src '30-geoip.conf',dest: '/etc/logstash/conf.d/30-geoip.conf', mode: '0644'}
-    - { src '35-rules-desc.conf',dest: '/etc/logstash/conf.d/35-rules-desc.conf', mode: '0644'}
-    - { src '36-ports-desc.conf',dest: '/etc/logstash/conf.d/36-ports-desc.conf', mode: '0644'}
-    - { src '45-cleanup.conf',dest: '/etc/logstash/conf.d/45-cleanup.conf', mode: '0644'}
-    - { src '50-outputs.conf',dest: '/etc/logstash/conf.d/50-outputs.conf', mode: '0644'}
+    - { src 'files/patterns/pfelk.grok', /patterns/pfelk.grok'}
+    - { src 'files/template/pf-geoip.json', /templates/pf-geoip.json'}
+    - { src 'files/databases/pfelk.grok', /databases/rule-names.csv'}
+    - { src 'files/databases/pfelk.grok', /databases/service-names-port-numbers.csv'}
+    - { src '01-inputs.conf'}
+    - { src '02-types.conf'}
+    - { src '03-filter.conf'}
+    - { src '05-firewall.conf'}
+    - { src '10-others.conf'}
+    - { src '15-squid.conf'}
+    - { src '20-suricata.conf'}
+    - { src '25-snort.conf'}
+    - { src '30-geoip.conf'}
+    - { src '35-rules-desc.conf'}
+    - { src '36-ports-desc.conf'}
+    - { src '45-cleanup.conf'}
+    - { src '50-outputs.conf'}
 
 - name: Start logstash
   systemd:
