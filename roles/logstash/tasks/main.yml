@@ -47,6 +47,31 @@
     - 45-cleanup.conf
     - 50-outputs.conf
 
+- name: Copy patterns file
+  copy:
+    src: files/patterns/pfelk.grok
+    dest: /etc/logstash/conf.d/patterns/pfelk.grok
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy templates file
+  copy:
+    src: files/template/pf-geoip.json
+    dest: /etc/logstash/conf.d/templates/pf-geoip.json
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy database files
+  copy:
+    src: files/databases/rule-names.csv
+    src: files/databases/service-names-port-numbers.csv
+    dest: /etc/logstash/conf.d/databases/
+    owner: root
+    group: root
+    mode: '0644'  
+
 - name: Start logstash
   systemd:
     name: logstash
