@@ -70,14 +70,12 @@
 
 - name: Copy databases files
   copy:
-    src: "{{ item }}"
+    src: /etc/logstash/conf.d/databases/rule-names.csv
+    src: /etc/logstash/conf.d/databases/service-names-port-numbers.csv
     dest: /etc/logstash/conf.d/databases/
     owner: root
     group: root
     mode: 0644
-  with_items:
-    - rule-names.csv
-    - service-names-port-numbers.csv
 
 - name: Start logstash
   systemd:
