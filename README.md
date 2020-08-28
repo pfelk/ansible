@@ -80,12 +80,16 @@ ansible-pfelk/
     │   │   ├── 25-snort.conf
     │   │   ├── 30-geoip.conf
     │   │   ├── 35-rules-desc.conf    
+    │   │   ├── 35-ports-desc.conf      
     │   │   ├── 45-cleanup.conf
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
     │   │   │   └── pfelk.grok
-    │   │   └── template
+    │   │   └── templates
     │   │       └── pf-geoip.json
+    │   │   └── databases
+    │   │       ├── rule-names.csv   
+    │   │       └── service-names-port-numbers.csv    
     │   ├── handlers
     │   │   └── main.yml
     │   └── tasks
