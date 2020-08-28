@@ -30,6 +30,7 @@
     - 25-snort.conf
     - 30-geoip.conf
     - 35-rules-desc.conf
+    - 36-ports-desc.conf
     - 45-cleanup.conf
     - 50-outputs.conf
 
@@ -47,19 +48,36 @@
     group: root
     mode: '0644'
 
-- name: Create template directory
+- name: Create templates directory
   file:
     path: /etc/logstash/conf.d/templates
     state: directory
     mode: '0744'
 
-- name: Copy template file
+- name: Copy templates file
   copy:
     src: files/template/pf-geoip.json
     dest: /etc/logstash/conf.d/templates/pf-geoip.json
     owner: root
     group: root
     mode: '0644'
+
+- name: Create databases directory
+  file:
+    path: /etc/logstash/conf.d/databases
+    state: directory
+    mode: '0744'
+
+- name: Copy database files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/logstash/conf.d/databases/
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - rule-names.csv
+    - service-names-port-numbers.csv
 
 - name: Start logstash
   systemd:
