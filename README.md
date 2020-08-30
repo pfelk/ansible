@@ -141,16 +141,6 @@ rename `firewall` (optional) to identify your device (i.e. backup_firewall)
 
 Configure line 11-20 (optional) to point to your second PF IP address if you have any.
 
-At the following section within the 03-filter.conf file, lines 4 & 5
-
-```
-# 03-filter.conf
-filter {
-  grok {
-    #OPN# match => {"message" => "<(?<[priority][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{SYSLOGHOST:[observer][name]} %{GREEDYDATA:filter_message}"} #OPNSense#
-    #PF# match => {"message" => "<(?<[priority][id]>.*)>%{SYSLOGTIMESTAMP:[event][created]} %{GREEDYDATA:filter_message}"} #pfSense#
-...
-```
 uncomment the instance type's match line you want to monitor (e.g. remove #PF# or #OPN#
 
 
