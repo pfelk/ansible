@@ -74,10 +74,7 @@ ansible-pfelk/
     │   │   ├── 02-types.conf
     │   │   ├── 03-filter.conf   
     │   │   ├── 05-firewall.conf
-    │   │   ├── 10-others.conf
-    │   │   ├── 15-squid.conf    
-    │   │   ├── 20-suricata.conf
-    │   │   ├── 25-snort.conf
+    │   │   ├── 10-apps.conf
     │   │   ├── 30-geoip.conf
     │   │   ├── 35-rules-desc.conf    
     │   │   ├── 35-ports-desc.conf      
@@ -86,7 +83,9 @@ ansible-pfelk/
     │   │   ├── patterns
     │   │   │   └── pfelk.grok
     │   │   └── templates
-    │   │       └── pf-geoip.json
+    │   │       ├── pfelk.json
+    │   │       ├── pfelk-elk.json
+    │   │       └── haproxy.json
     │   │   └── databases
     │   │       ├── rule-names.csv   
     │   │       └── service-names-port-numbers.csv    
