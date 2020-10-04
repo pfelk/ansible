@@ -54,8 +54,10 @@
 
 - name: Copy templates file
   copy:
+    src: files/templates/pfelk.json
+    src: files/templates/haproxy.json
     src: files/templates/pfelk-geoip.json
-    dest: /etc/logstash/conf.d/templates/pfelk-geoip.json
+    dest: /etc/logstash/conf.d/templates/
     owner: root
     group: root
     mode: '0644'
