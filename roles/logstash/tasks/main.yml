@@ -26,7 +26,7 @@
     path: "{{ item }}"
     owner: root
     group: root
-    mode: '0744'
+    mode: 0744
   with_items:
     - '/etc/logstash/conf.d/patterns'
     - '/etc/logstash/conf.d/templates'
