@@ -50,6 +50,8 @@
     - { src: '36-ports-desc.conf', dest: '/etc/logstash/conf.d' }
     - { src: '45-cleanup.conf', dest: '/etc/logstash/conf.d' }
     - { src: '50-outputs.conf', dest: '/etc/logstash/conf.d' }
+    - { src: 'rule-names.csv', dest: '/etc/logstash/conf.d/databases' }   
+    - { src: 'service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases' }   
     - { src: 'pfelk.grok', dest: '/etc/logstash/conf.d/patterns' }
     - { src: 'pfelk.json', dest: '/etc/logstash/conf.d/templates' }
     - { src: 'haproxy.json', dest: '/etc/logstash/conf.d/templates' }
