@@ -16,14 +16,7 @@
   file:
     path: "{{ item }}"
     state: directory
-  with_items:
-    - '/etc/logstash/conf.d/patterns'
-    - '/etc/logstash/conf.d/templates'
-    - '/etc/logstash/conf.d/databases'
-    
-- name: Directories Permissions
-  file:
-    path: "{{ item }}"
+    mode: 0744
     owner: root
     group: root
     mode: '0744'
@@ -34,28 +27,47 @@
 
 - name: Copy pfELK Files
   copy: 
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: "{{ item }}" 
+    dest: /etc/logstash/conf.d/
     owner: root
     group: root
     mode: '0644'
   with_items:
-    - { src: '01-inputs.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '02-types.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '03-filter.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '05-firewall.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '10-apps.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '30-geoip.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '35-rules-desc.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '36-ports-desc.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '45-cleanup.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '50-outputs.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: 'rule-names.csv', dest: '/etc/logstash/conf.d/databases/' }   
-    - { src: 'service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }   
-    - { src: 'pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
-    - { src: 'pfelk.json', dest: '/etc/logstash/conf.d/templates/' }
-    - { src: 'haproxy.json', dest: '/etc/logstash/conf.d/templates/' }
-    - { src: 'pfelk-geoip.json', dest: '/etc/logstash/conf.d/templates/' }
+    - 01-inputs.conf
+    - 02-types.conf
+    - 03-filter.conf
+    - 05-firewall.conf
+    - 10-apps.conf
+    - 30-geoip.conf
+    - 35-rules-desc.conf
+    - 36-ports-desc.conf
+    - 45-cleanup.conf
+    - 50-outputs.conf
+
+- name: Copy patterns file
+  copy:
+    src: files/patterns/pfelk.grok
+    dest: /etc/logstash/conf.d/patterns/pfelk.grok
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy templates file
+  copy:
+    src: files/templates/pfelk-geoip.json
+    dest: /etc/logstash/conf.d/templates/pfelk-geoip.json
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy database files
+  copy:
+    src: files/databases/rule-names.csv
+    src: files/databases/service-names-port-numbers.csv
+    dest: /etc/logstash/conf.d/databases/
+    owner: root
+    group: root
+    mode: '0644'  
 
 - name: Start logstash
   systemd:
