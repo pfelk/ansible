@@ -84,7 +84,7 @@ ansible-pfelk/
     │   │   │   └── pfelk.grok
     │   │   └── templates
     │   │       ├── pfelk.json
-    │   │       ├── pfelk-elk.json
+    │   │       ├── pfelk-geoip.json
     │   │       └── haproxy.json
     │   │   └── databases
     │   │       ├── rule-names.csv   
