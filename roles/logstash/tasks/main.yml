@@ -54,22 +54,26 @@
 
 - name: Copy templates file
   copy:
-    src: files/templates/pfelk.json
-    src: files/templates/haproxy.json
-    src: files/templates/pfelk-geoip.json
+    src: "{{ item }}"
     dest: /etc/logstash/conf.d/templates/
     owner: root
     group: root
     mode: '0644'
+  with_items:
+    - pfelk.json
+    - haproxy.json
+    - pfelk-geoip.json
 
 - name: Copy database files
   copy:
-    src: files/databases/rule-names.csv
-    src: files/databases/service-names-port-numbers.csv
+    src: "{{ item }}"
     dest: /etc/logstash/conf.d/databases/
     owner: root
     group: root
-    mode: '0644'  
+    mode: '0644'
+  with_items:
+    - rule-names.csv
+    - service-names-port-numbers.csv
 
 - name: Start logstash
   systemd:
