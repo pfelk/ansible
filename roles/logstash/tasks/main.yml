@@ -16,7 +16,14 @@
   file:
     path: "{{ item }}"
     state: directory
-    mode: 0744
+  with_items:
+    - '/etc/logstash/conf.d/patterns'
+    - '/etc/logstash/conf.d/templates'
+    - '/etc/logstash/conf.d/databases'
+    
+- name: Directories Permissions
+  file:
+    path: "{{ item }}"
     owner: root
     group: root
     mode: '0744'
