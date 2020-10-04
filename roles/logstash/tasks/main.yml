@@ -26,7 +26,7 @@
     path: "{{ item }}"
     owner: root
     group: root
-    mode: 0744
+    mode: '0744'
   with_items:
     - '/etc/logstash/conf.d/patterns'
     - '/etc/logstash/conf.d/templates'
@@ -38,24 +38,24 @@
     dest: "{{ item.dest }}"
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   with_items:
-    - { src: '01-inputs.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '02-types.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '03-filter.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '05-firewall.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '10-apps.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '30-geoip.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '35-rules-desc.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '36-ports-desc.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '45-cleanup.conf', dest: '/etc/logstash/conf.d' }
-    - { src: '50-outputs.conf', dest: '/etc/logstash/conf.d' }
-    - { src: 'rule-names.csv', dest: '/etc/logstash/conf.d/databases' }   
-    - { src: 'service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases' }   
-    - { src: 'pfelk.grok', dest: '/etc/logstash/conf.d/patterns' }
-    - { src: 'pfelk.json', dest: '/etc/logstash/conf.d/templates' }
-    - { src: 'haproxy.json', dest: '/etc/logstash/conf.d/templates' }
-    - { src: 'pfelk-geoip.json', dest: '/etc/logstash/conf.d/templates' }
+    - { src: '01-inputs.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '02-types.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '03-filter.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '05-firewall.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '10-apps.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '30-geoip.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '35-rules-desc.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '36-ports-desc.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '45-cleanup.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '50-outputs.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: 'rule-names.csv', dest: '/etc/logstash/conf.d/databases/' }   
+    - { src: 'service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }   
+    - { src: 'pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
+    - { src: 'pfelk.json', dest: '/etc/logstash/conf.d/templates/' }
+    - { src: 'haproxy.json', dest: '/etc/logstash/conf.d/templates/' }
+    - { src: 'pfelk-geoip.json', dest: '/etc/logstash/conf.d/templates/' }
 
 - name: Start logstash
   systemd:
