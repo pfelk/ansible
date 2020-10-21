@@ -18,7 +18,6 @@
     state: directory
   with_items:
     - '/etc/logstash/conf.d/patterns'
-    - '/etc/logstash/conf.d/templates'
     - '/etc/logstash/conf.d/databases'
     
 - name: Directories Permissions
@@ -29,7 +28,6 @@
     mode: '0744'
   with_items:
     - '/etc/logstash/conf.d/patterns'
-    - '/etc/logstash/conf.d/templates'
     - '/etc/logstash/conf.d/databases'
 
 - name: Copy pfELK Files
@@ -53,9 +51,6 @@
     - { src: 'rule-names.csv', dest: '/etc/logstash/conf.d/databases/' }   
     - { src: 'service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }   
     - { src: 'pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
-    - { src: 'pfelk.json', dest: '/etc/logstash/conf.d/templates/' }
-    - { src: 'haproxy.json', dest: '/etc/logstash/conf.d/templates/' }
-    - { src: 'pfelk-geoip.json', dest: '/etc/logstash/conf.d/templates/' }
 
 - name: Start logstash
   systemd:
