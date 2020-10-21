@@ -82,10 +82,6 @@ ansible-pfelk/
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
     │   │   │   └── pfelk.grok
-    │   │   └── templates
-    │   │       ├── pfelk.json
-    │   │       ├── pfelk-geoip.json
-    │   │       └── haproxy.json
     │   │   └── databases
     │   │       ├── rule-names.csv   
     │   │       └── service-names-port-numbers.csv    
