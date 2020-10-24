@@ -33,6 +33,10 @@
     group: root
     mode: 0644
 
+- name: reload systemd
+  become: yes
+  command: systemctl daemon-reload
+
 - name: Start kibana
   systemd:
     name: kibana
