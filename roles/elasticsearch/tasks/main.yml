@@ -36,12 +36,12 @@
 
 - name: Install python pip
   apt:
-    name: python-pip
+    name: python3-pip
     state: present
 
 - name: Install python setuptools
   apt:
-    name: python-setuptools
+    name: python3-setuptools
     state: present
 
 - name: Start elasticsearch
