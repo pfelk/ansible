@@ -36,6 +36,7 @@
 - name: Start kibana
   systemd:
     name: kibana
+    daemon_reexec: yes
     daemon_reload: yes
     state: started
     enabled: yes
