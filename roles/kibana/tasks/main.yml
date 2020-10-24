@@ -33,9 +33,8 @@
     group: root
     mode: 0644
 
-- name: Start kibana
-  systemd:
+- name: Starting Kibana
+  become: yes
+  service:
     name: kibana
-    daemon_reload: yes
     state: started
-    enabled: yes
