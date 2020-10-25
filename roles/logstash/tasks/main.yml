@@ -25,7 +25,7 @@
     path: "{{ item }}"
     owner: root
     group: root
-    mode: '0744'
+    mode: 0744
   with_items:
     - '/etc/logstash/conf.d/patterns'
     - '/etc/logstash/conf.d/databases'
@@ -36,7 +36,7 @@
     dest: "{{ item.dest }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: 0644
   with_items:
     - { src: '01-inputs.conf', dest: '/etc/logstash/conf.d/' }
     - { src: '02-types.conf', dest: '/etc/logstash/conf.d/' }
