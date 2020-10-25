@@ -75,9 +75,9 @@
     - { src: '36-ports-desc.conf', dest: '/etc/logstash/conf.d/' }
     - { src: '45-cleanup.conf', dest: '/etc/logstash/conf.d/' }
     - { src: '50-outputs.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: 'rule-names.csv', dest: '/etc/logstash/conf.d/databases/' }
-    - { src: 'service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }
-    - { src: 'pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
+    - { src: 'databases/rule-names.csv', dest: '/etc/logstash/conf.d/databases/' }
+    - { src: 'databases/service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }
+    - { src: 'patterns/pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
 
 - name: Start logstash
   systemd:
