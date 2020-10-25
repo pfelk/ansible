@@ -79,9 +79,12 @@
     - { src: 'databases/service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }
     - { src: 'patterns/pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
 
-- name: Start logstash
-  systemd:
+- name: reload systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: Ensure Logstash is started and enabled on boot.
+  service:
     name: logstash
-    daemon_reload: yes
     state: started
     enabled: yes
