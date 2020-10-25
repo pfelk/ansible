@@ -9,23 +9,8 @@
 - name: Add elasticsearch repository
   apt_repository: repo={{ es_apt_url }} state=present
 
-# workaround: https://discuss.elastic.co/t/logstash-installation-problems-ubuntu-20-04-vm/235231/11
-
-- name: startup options as workaround pt. 1
-  copy:
-    content: 'JAVA_OPTS="@/etc/logstash/java_opts"'
-    dest: /etc/logstash/startup.options
-    owner: root
-    group: root
-    mode: 0744
-
-- name: java_opts as workaround pt. 2
-  copy:
-    content: '--add-opens java.base/sun.nio.ch=org.jruby.dist --add-opens java.base/java.io=org.jruby.dist'
-    dest: /etc/logstash/java_opts
-    owner: root
-    group: root
-    mode: 0744
+- name: Install openjdk
+  apt: name=default-jre state=present
 
 - name: Install logstash
   apt: name=logstash state=present
