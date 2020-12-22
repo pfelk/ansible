@@ -73,11 +73,11 @@ ansible-pfelk/
     │   │   ├── 01-inputs.conf
     │   │   ├── 02-types.conf
     │   │   ├── 03-filter.conf   
-    │   │   ├── 05-firewall.conf
-    │   │   ├── 10-apps.conf
+    │   │   ├── 05-apps.conf
     │   │   ├── 30-geoip.conf
     │   │   ├── 35-rules-desc.conf    
-    │   │   ├── 35-ports-desc.conf      
+    │   │   ├── 35-ports-desc.conf 
+    │   │   ├── 40-interfaces.conf
     │   │   ├── 45-cleanup.conf
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
@@ -108,7 +108,7 @@ $ ansible-galaxy collection install fktkrt.ansible_pfelk
 ### Clone the repository
 
 ```
-$ git clone https://github.com/3ilson/ansible-pfelk.git
+$ git clone https://github.com/pfelk/ansible-pfelk.git
 ```
 
 ### Define the host you want to deploy the ELK stack to
@@ -157,7 +157,7 @@ This will take care of the following tasks:
 
 ## Finish the configuration
 
-You can follow the steps starting with the Firewall section at https://github.com/a3ilson/pfelk/blob/master/install/configuration.md
+You can follow the steps starting with the Firewall section at https://github.com/pfelk/pfelk/blob/master/install/configuration.md
 
 ## Troubleshooting
 
