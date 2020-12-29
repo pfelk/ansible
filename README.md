@@ -74,10 +74,10 @@ ansible-pfelk/
     │   │   ├── 02-types.conf
     │   │   ├── 03-filter.conf   
     │   │   ├── 05-apps.conf
+    │   │   ├── 20-interfaces.conf
     │   │   ├── 30-geoip.conf
     │   │   ├── 35-rules-desc.conf    
     │   │   ├── 35-ports-desc.conf 
-    │   │   ├── 40-interfaces.conf
     │   │   ├── 45-cleanup.conf
     │   │   ├── 50-outputs.conf
     │   │   ├── patterns
