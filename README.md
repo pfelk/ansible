@@ -124,21 +124,6 @@ vars:
   geoipupdate_license_key: "ABCDEF"
 ```
 
-### Configure your inputs file
-
-#### Enter your pfSense/OPNsense IP address (02-types.conf)
-
-Change line 5:
-the `[host] == "192.168.9.1" ` should point to your pfSense/OPNsense IP address
-
-Change line 8:
-rename `firewall` (optional) to identify your device (i.e. backup_firewall)
-
-Configure line 11-20 (optional) to point to your second PF IP address if you have any.
-
-uncomment the instance type's match line you want to monitor (e.g. remove #PF# or #OPN#
-
-
 ### Change current folder to ansible-pfelk/ then deploy the stack
 ```
 $ cd ansible-pfelk/
