@@ -58,9 +58,6 @@ ansible-pfelk/
     │   │   └── main.yml
     │   └── tasks
     │       └── main.yml
-    ├── java
-    │   └── tasks
-    │       └── main.yml
     ├── kibana
     │   ├── files
     │   │   └── kibana.yml
@@ -68,34 +65,32 @@ ansible-pfelk/
     │   │   └── main.yml
     │   └── tasks
     │       └── main.yml
-    ├── logstash
-    │   ├── files
-    │   │   ├── 01-inputs.conf
-    │   │   ├── 02-types.conf
-    │   │   ├── 03-filter.conf   
-    │   │   ├── 05-apps.conf
-    │   │   ├── 20-interfaces.conf
-    │   │   ├── 30-geoip.conf
-    │   │   ├── 35-rules-desc.conf    
-    │   │   ├── 35-ports-desc.conf 
-    │   │   ├── 45-cleanup.conf
-    │   │   ├── 50-outputs.conf
-    │   │   ├── patterns
-    │   │   │   └── pfelk.grok
-    │   │   └── databases
-    │   │       ├── rule-names.csv   
-    │   │       └── service-names-port-numbers.csv    
-    │   ├── handlers
-    │   │   └── main.yml
-    │   └── tasks
-    │       └── main.yml
-    └── maxmind
-        ├── handlers
-        │   └── main.yml
-        ├── tasks
-        │   └── main.yml
-        └── templates
-            └── GeoIP.conf.j2
+    └── logstash
+        ├── files
+        │   ├── pipelines.yml
+        │   ├── 01-inputs.conf
+        │   ├── 02-types.conf
+        │   ├── 03-filter.conf   
+        │   ├── 05-apps.conf
+        │   ├── 20-interfaces.conf
+        │   ├── 30-geoip.conf
+        │   ├── 35-rules-desc.conf    
+        │   ├── 36-ports-desc.conf 
+        │   ├── 37-enhanced_user_agent.conf    
+        │   ├── 38-enhanced_url.conf               
+        │   ├── 45-cleanup.conf
+        │   ├── 49-enhanced_private.conf
+        │   ├── 50-outputs.conf
+        │   ├── patterns
+        │   │   └── pfelk.grok
+        │   └── databases
+        │       ├── private-hostnames.csv
+        │       ├── rule-names.csv   
+        │       └── service-names-port-numbers.csv    
+        ├── handlers
+        │   └── main.yml
+        └── tasks
+            └── main.yml
 
 ```
 ## Deploy with Ansible Galaxy Collections
