@@ -37,7 +37,9 @@
     mode: 0744
 
 - name: Install logstash
-  apt: name=logstash state=present
+  apt: 
+    name: logstash 
+    state: present
 
 - name: Create Required Directories
   file:
