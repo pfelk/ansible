@@ -114,16 +114,6 @@ $ git clone https://github.com/pfelk/ansible-pfelk.git
 ### Define the host you want to deploy the ELK stack to
 Provide your target IP address in `ansible-pfelk/hosts` under `elk`, the ELK stack will be installed on this target.
 
-### Configure MaxMind geoipupdate
-- Create a MaxMind account at: https://www.maxmind.com/en/geolite2/signup
-- Login to your MaxMind account; navigate to "My License Key" under "Services" and Generate new license key
-- Configure your credentials at playbook level in `deploy-stack.yml`:
-```
-vars:
-  geoipupdate_account_id: 123
-  geoipupdate_license_key: "ABCDEF"
-```
-
 ### Change current folder to ansible-pfelk/ then deploy the stack
 ```
 $ cd ansible-pfelk/
