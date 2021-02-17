@@ -116,10 +116,6 @@ $ ansible-playbook -i hosts --ask-become deploy-stack.yml
 ```
 
 This will take care of the following tasks:
- - install java
- - install maxmind geoipupdate
-   - download GeoIP databases
-   - setup a cron job for automated updates
  - install elasticsearch
  - install kibana
  - install logstash
