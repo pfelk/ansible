@@ -44,8 +44,9 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - '/etc/logstash/conf.d/patterns'
-    - '/etc/logstash/conf.d/databases'
+    - '/etc/pfelk/conf.d'
+    - '/etc/pfelk/databases'
+    - '/etc/pfelk/patterns'
 
 - name: Directories Permissions
   file:
@@ -54,8 +55,9 @@
     group: root
     mode: 0744
   with_items:
-    - '/etc/logstash/conf.d/patterns'
-    - '/etc/logstash/conf.d/databases'
+    - '/etc/pfelk/conf.d'
+    - '/etc/pfelk/databases'
+    - '/etc/pfelk/patterns'
 
 - name: Copy pfELK Files
   copy:
@@ -65,19 +67,23 @@
     group: root
     mode: 0644
   with_items:
-    - { src: '01-inputs.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '02-types.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '03-filter.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '05-firewall.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '10-apps.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '30-geoip.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '35-rules-desc.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '36-ports-desc.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '45-cleanup.conf', dest: '/etc/logstash/conf.d/' }
-    - { src: '50-outputs.conf', dest: '/etc/logstash/conf.d/' }
+    - { src: '01-inputs.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '02-types.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '03-filter.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '05-apps.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '20-interfaces.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '30-geoip.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '35-rules-desc.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '36-ports-desc.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '37-enhanced_user_agent.conf', dest: '/etc/pfelk/conf.d/' }    
+    - { src: '38-enhanced_url.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '45-cleanup.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '49-enhanced_private.conf', dest: '/etc/pfelk/conf.d/' }
+    - { src: '50-outputs.conf', dest: '/etc/pfelk/conf.d/' }
     - { src: 'databases/rule-names.csv', dest: '/etc/logstash/conf.d/databases/' }
-    - { src: 'databases/service-names-port-numbers.csv', dest: '/etc/logstash/conf.d/databases/' }
-    - { src: 'patterns/pfelk.grok', dest: '/etc/logstash/conf.d/patterns/' }
+    - { src: 'databases/service-names-port-numbers.csv', dest: '/etc/pfelk/databases/' }
+    - { src: 'databases/private-hostnames.csv', dest: '/etc/pfelk/databases/' }
+    - { src: 'patterns/pfelk.grok', dest: '/etc/pfelk/patterns/' }
 
 - name: reload systemd
   become: yes
