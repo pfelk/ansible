@@ -18,7 +18,6 @@
     mode: 0744
   with_items:
     - '/etc/logstash'
-    - '/etc/default/logstash'
 
 - name: startup options as workaround pt. 1
   copy:
