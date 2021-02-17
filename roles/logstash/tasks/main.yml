@@ -85,6 +85,14 @@
     - { src: 'databases/private-hostnames.csv', dest: '/etc/pfelk/databases/' }
     - { src: 'patterns/pfelk.grok', dest: '/etc/pfelk/patterns/' }
 
+- name: Copy logstash configuration
+  copy:
+    src: "files/pipelines.yml"
+    dest: "/etc/logstash/pipelines.yml"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: reload systemd
   become: yes
   command: systemctl daemon-reload
