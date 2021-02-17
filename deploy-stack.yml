@@ -3,11 +3,6 @@
   become: yes
   become_user: root
   roles:
-    - { role: java }
-    - role: maxmind
-      vars:
-        geoipupdate_account_id: 123
-        geoipupdate_license_key: "ABCDEF"
     - { role: elasticsearch }
     - { role: kibana }
     - { role: logstash }
