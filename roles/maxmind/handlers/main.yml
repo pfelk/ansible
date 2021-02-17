@@ -1,3 +1,0 @@
----
-- name: run geoipupdate
-  command: geoipupdate -d /usr/share/GeoIP/
